@@ -1,0 +1,32 @@
+< 00. NLP 실습 환경 세팅 >
+
+[ 01. 아나콘다 설치 ]
+	(참고) https://copycoding.tistory.com/341
+	
+아나콘다 재설치
+	설치 후 파이썬 버전 확인
+		pyton -V
+		> Python 3.8.8
+
+텐서플로우 설치
+	pip 업그레이드
+		pip install -upgrade pip
+	가상환경 생성
+		conda create -n tf pip python=3.8
+	가상환경 실행
+		conda activate tf
+	텐서플로우 설치 (CPU 버전)
+		pip install --ignore-installed --upgrade tensorflow-cpu
+	
+	> 임포트해보니까 텐서플로우 모듈을 찾지 못했다는 에러가 나옵니다
+	> 일단 가상환경 종료하고 텐서플로우 추가로 깔아봅시다ㅠ
+		pip install tensorflow
+		
+	> 이번에는... 다른 에러 발생 ^__^
+	
+	(error) Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+	> GPU를 사용할 수 없대요~ 제 노트북은 GPU가 없으니까요^^
+	> 텐서플로우 지우고 CPU 버전으로 다시 깔아봅시다
+		pip install --ignore-installed --upgrade tensorflow-cpu
+
+	> 됐다ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ

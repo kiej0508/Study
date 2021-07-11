@@ -73,23 +73,39 @@
 		
 		(4) 설치 확인하기
 			ㅎ 임포트 에러 ㅎ
-
-ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ세팅부터 못하기 있냐고ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+			
+	> 아나콘다 삭제 후 재설치 후 정상 작동
+	(00.Setting-up-NLP-environment)
 
 2. 케라스(Keras)
 	- 텐서플로우에 대한 API 제공
 	- 텐서플로우를 백엔드로 사용하여 더 간단한 코드로 사용할 수 있도록 함
-	(1) 케라스 최신버전 설치
-			pip install keras
-	(2) 설치 확인하기 (파이썬에서)
-			import keras
-			keras.__version__
+	(1) 깔려있는지 먼저 확인
+		import keras
+		keras.__version__
+		> 2.3.0
 
 3. 젠심(Gensim)
 	- 토픽 모델링, 자연어 처리를 수행하는 오픈소스 라이브러리
+	(1) 깔려있는지 먼저 확인
+		import gensim
+		> 업슈
+	(2) 로컬이랑 가상 둘다 설치해줍시다 
+		pip install gensim
+	(3) 설치 및 버전 확인
+		import gensim
+		gensim.__version__
+		> 4.0.1
+	OK!
 
 4. 사이킷런(Scilit-learn)
 	- 나이브 베이즈 분류, 서포트 벡터 머신 등을 지원하는 파이썬 머신러닝 라이브러리
+	(1) 깔려있는지 먼저 확인
+		import sklearn
+		sklearn.__version__
+		> 0.24.1
+	OK!
+	
 
 5. 주피터 노트북(Jupyter NOtebook)
 	- 책에서 실습할때 주로 사용할 것임
@@ -99,7 +115,124 @@
 
 1. NLTK와 NLTK Data 설치
 	- NLTK : 자연어 처리를 위한 파이썬 패키지
+	(1) 깔려있는지 먼저 확인
+		import nltk
+		nltk.__version__
+		> 3.6.1
+	OK!
+	(2) NLTK DATA 설치
+		nltk.download()
 
 2. KoNLPy 설치
 	- 한국어 자연어 처리를 위한 형태소 분석기 패키지
+	(1) 깔려있는지 먼저 확인
+		import konlpy
+		konlpy.__version__
+		> 업슈
+	OK!
+	(2) 로컬이랑 가상 둘다 설치해줍시다 
 		pip install konlpy
+	(3) 설치 및 버전 확인
+		import konlpy
+		konlpy.__version__
+		> 0.5.2
+	OK!
+
+
+[ 04. 판다스(Pandas) and 넘파이(Numpy) and 맷플롭립(Matplotlib) ]
+
+1. 판다스(Pandas)
+	(1) 깔려있는지 먼저 확인
+		import pandas as pd
+		pd.__version__
+		> 1.2.4
+	OK!
+	
+	(1) 시리즈(Series)
+		- 1차원 배열 값(values)에 각 값에 대응되는 인덱스(index)를 부여할 수 있는 구조
+		ex)
+			sr = pd.Series([17000, 18000, 1000, 5000],
+							index=["피자", "치킨", "콜라", "맥주"])
+			print(sr)
+				피자    17000
+				치킨    18000
+				콜라     1000
+				맥주     5000
+				dtype: int64
+			print(sr.values)
+				[17000 18000  1000  5000]
+			print(sr.index)
+				Index(['피자', '치킨', '콜라', '맥주'], dtype='object')
+	
+	(2) 데이터프레임(DataFrame)
+		- 2차원 리스트를 맵개변수로 전달
+		- 2차원 행, 열,  값을 가지는 자료 구조
+		ex)
+			values = ([1, 2, 3], [4, 5, 6], [7, 8, 9])
+			index = ['one', 'two', 'three']
+			columns = ['A', 'B', 'C']
+			
+			df = pd.DataFrame(values, index=index, columns=columns)
+			
+			print(df)
+				       A  B  C
+				one    1  2  3
+				two    4  5  6
+				three  7  8  9
+			
+			print(df.index)
+				Index(['one', 'two', 'three'], dtype='object')
+			
+			print(df.columns)
+				Index(['A', 'B', 'C'], dtype='object')
+			
+			print(df.values)
+				[[1 2 3]
+				 [4 5 6]
+				 [7 8 9]]
+	
+	(3) 데이터 프레임의 생성
+		- 리스트, 시리즈, 딕셔너리, ndarrays, 데이터프레임으로 생성할 수 있음
+		- 리스트로 생성하기
+		(1) 데이터프레임 생성
+			data = [['1000', 'Steve', 90.72], ['1001', 'James', 78.09], ['1002', 'Doyeon', 98.43], ['1003', 'Jane', 64.19], ['1004', 'Pilwoong', 81.30], ['1005', 'Tony', 99.14]]
+			df = pd.DataFrame(data)
+			print(df)
+				      0         1      2
+				0  1000     Steve  90.72
+				1  1001     James  78.09
+				2  1002    Doyeon  98.43
+				3  1003      Jane  64.19
+				4  1004  Pilwoong  81.30
+				5  1005      Tony  99.14
+		(2) 열 지정하기
+			df = pd.DataFrame(data, columns=['학번', '이름', '점수'])
+			print(df)
+				     학번        이름     점수
+				0  1000     Steve  90.72
+				1  1001     James  78.09
+				2  1002    Doyeon  98.43
+				3  1003      Jane  64.19
+				4  1004  Pilwoong  81.30
+				5  1005      Tony  99.14
+		- 딕셔너리로 생성하기
+		(1) 데이터프레임 생성
+			data2 = {'학번' : ['1000', '1001', '1002', '1003', '1004', '1005'], '이름' : ['Steve', 'James', 'Doyeon', 'Jane', 'Pilwoong', 'Tony'], '점수' : [90.72, 78.09, 98.43, 64.19, 81.30, 99.14]}
+			df2 = pd.DataFrame(data2)
+			print(df2)
+				     학번        이름     점수
+				0  1000     Steve  90.72
+				1  1001     James  78.09
+				2  1002    Doyeon  98.43
+				3  1003      Jane  64.19
+				4  1004  Pilwoong  81.30
+				5  1005      Tony  99.14
+			
+	(4) 데이터프레임 조회하기
+		- df.head(n) : 앞 부분 n개 보기
+		- df.tail(n) : 뒷 부분 n개 보기
+		- df['열이름'] : 특정 열 보기
+	
+	(5) 외부 데이터 읽기
+		- csv 등의 데이터로 생성 가능
+		- pd.read_csv(r'파일경로.파일.확장자')
