@@ -395,3 +395,94 @@
 	(5) 차트 이미지 출력
 		plt.show()
 
+
+[ 05. 판다스 프로파일링(Pandas-Profiling) ]
+※ 탐색적 데이터 분석 EDA : 데이터 내 값의 분포, 변수 간의 관계, 결측값 존재 유무 등 데이터의 성격 파악하기
+
+1. 실습 파일 불러오기
+	- 실습 데이터 다운로드 링크 : https://www.kaggle.com/uciml/sms-spam-collection-dataset
+	
+	- 라이브러리 임포트 및 데이터 가져오기
+		import pandas as pd
+		import pandas_profiling
+		
+		# 판다스로 csv 파일 읽어오기
+		data = pd.read_csv('./sample_data/spam.csv', encoding='latin1')
+		
+		#5행 출력
+		data[:5]
+				v1	v2	Unnamed: 2	Unnamed: 3	Unnamed: 4
+				0	ham	Go until jurong point, crazy.. Available only ...	NaN	NaN	NaN
+				1	ham	Ok lar... Joking wif u oni...	NaN	NaN	NaN
+				2	spam	Free entry in 2 a wkly comp to win FA Cup fina...	NaN	NaN	NaN
+				3	ham	U dun say so early hor... U c already then say...	NaN	NaN	NaN
+				4	ham	Nah I don't think he goes to usf, he lives aro...	NaN	NaN	NaN
+		
+2. 리포트 생성하기
+	- 데이터프레임에 .profile_report()를 사용하여 리포트를 생성할 수 있음
+		# 리포트 생성하여 저장
+		pr = data.profile_report()
+		
+		# 리포트를 HTML 파일로 저장
+		pr.to_file('./practice_file/pr_report_20210804.html')
+		
+3. 리포트 살펴보기
+		# 저장한 리포트 출력
+		pr
+	1) 개요(Overview) : 데이터 크기, 변수의 수, 결측값 비율, 데이터의 종류 등
+	2) 변수(Variables) : 모든 특성 변수들에 대한 결측값, 중복을 제외한 유니크 값의 개수 등 통계를 보여줌
+	3) 상세사항 확인하기(Toggle details) : 2에서 보여준 변수에 상세값
+
+
+[ 06. 머신러닝 워크플로우(Machine Learning Workflow) ]
+※ 데이터 사이언스 또는 머신 러닝의 전반적인 과정
+
+1. 머신러닝 워크플로우(Machine Learning Workflow)
+	- 데이터를 수집하고 머신 러닝을 하는 과정은 크게 다음 6가지
+	1) 수집(Acquisition)
+		- 기계에 학습시켜야 할 데이터
+		- 자연어 처리의 경우 말뭉치 또는 코퍼스(corpus)라고 부름
+		- corpus란, 조사나 연구 목적에 의해 특정 도메인으로부터 수집된 텍스트 집합
+	2) 점검 및 탐색(Inspection and exploration)
+		= 탐색적 데이터 분석(Exploratory Data Analysis, EDA) 단계
+		- 데이터의 점검과 탐색
+		- 데이터의 구조, 노이즈 데이터, 머신러닝 적용을 위해 데이터를 정제할 방안 등
+		- 독립 변수, 종속 변수, 변수 유형, 변수의 데이터 타입 등을 점검
+		- 데이터의 특징과 내재하는 구조적 관계를 파악
+	3) 전처리 및 정제(Preprocessing and Cleaning)
+		- 자연어 처리의 경우 토큰화, 정제, 정규화, 불용어 제거 등의 단계를 포함
+	4) 모델링 및 훈련(Modeling and Training)
+		- 적절한 머신러닝 알고리즘을 선택하여 모델링
+		- 전처리된 데이터를 머신러닝 알고리즘을 통해 기계 학습 수행 (=훈련)
+		- 학습 데이터는 학습용, 검증용, 테스트용으로 분리
+		- 검증용과 테스트용의 차이는 모의고사와 실제 시험과 같은 차이
+	5) 평가(Evaluation)
+		- 테스트용 데이터로 성능 평가
+	6) 배포(Deployment)
+		- 목표 성능에 도달했다면 모델 배포
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

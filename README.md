@@ -57,7 +57,8 @@
 
 ### 딥 러닝을 이용한 자연어 처리 입문_ Part 1. 기본 과정
 https://wikidocs.net/book/2155   
-- 2021.07.04 ~ 2021.xx.xx : 자연어 처리란?   
+- 2021.07.04 ~ 2021.08.04 : 자연어 처리란?   
+- 2021.08.11 ~ 2021.xx.xx : 
 
 한국어 NLP 논문 모음 : https://github.com/papower1/Awesome-Korean-NLP-Papers
 https://hunkim.github.io/ml/
