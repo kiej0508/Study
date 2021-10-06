@@ -1,5 +1,5 @@
 < 00. NLP 실습 환경 세팅 >
-
+	
 [ 01. 아나콘다 설치 ]
 	(참고) https://copycoding.tistory.com/341
 	
@@ -7,6 +7,7 @@
 	설치 후 파이썬 버전 확인
 		pyton -V
 		> Python 3.8.8
+	> 아나콘다 라이센스 변경으로 미니콘다로 재설치 (2021-09-01 / 환경설정 완료)
 
 텐서플로우 설치
 	pip 업그레이드
@@ -17,12 +18,16 @@
 		conda activate tf
 	텐서플로우 설치 (CPU 버전)
 		pip install --ignore-installed --upgrade tensorflow-cpu
-	
-	> 임포트해보니까 텐서플로우 모듈을 찾지 못했다는 에러가 나옵니다
-	> 일단 가상환경 종료하고 텐서플로우 추가로 깔아봅시다ㅠ
-		pip install tensorflow
+	파이썬에서 텐서플로우 실행 확인
+		python
+		import tensorflow as tf
+		tf.__version__
+		exit()
+						> 임포트해보니까 텐서플로우 모듈을 찾지 못했다는 에러가 나옵니다
+						> 일단 가상환경 종료하고 텐서플로우 추가로 깔아봅시다ㅠ
+							pip install tensorflow
 		
-	> 이번에는... 다른 에러 발생 ^__^
+						> 이번에는... 다른 에러 발생 ^__^
 	
 	(error) Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
 	> GPU를 사용할 수 없대요~ 제 노트북은 GPU가 없으니까요^^
@@ -30,3 +35,19 @@
 		pip install --ignore-installed --upgrade tensorflow-cpu
 
 	> 됐다ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
+
+주피터 가상환경 연결 (https://needjarvis.tistory.com/626)
+	가상환경에 주피터 설치
+		pip install jupyter
+	커널 생성
+		python -m ipykernel install --user --name tf(가상환경이름) --display-name tf(커널이름)
+		python -m ipykernel install --user --name tf --display-name tf
+
+커널 변경 시 DDL 프로시저 어쩌구 에러날 경우
+	가상환경 실행
+		conda install -c anaconda pywin32
+
+ssl 에러 관련 라이브러리 설치용(주피터에서)
+	import ssl
+	ssl._create_default_https_context = ssl._create_unverified_context
+	!pip install matplotlib

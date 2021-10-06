@@ -1,0 +1,62 @@
+※ 주피터 실행
+	1) cmd 관리자 권한 열기
+	2) 가상환경 실행 (conda activate tf)
+	3) 주피터 실행
+	4) 주피터 커널 가상환경으로 변경
+============================
+
+< 02. 텍스트 전처리(Text preprocessing) >
+	- 용도에 맞게 텍스트를 사전에 처리하는 작업
+	- 자연어 처리 기법을 제대로 동작하게 하기 위하여 필수적임
+
+
+[ 01. 토큰화(Tokenization) ]
+	- 코퍼스를 토큰 단위로 나누는 작업
+	- 토큰의 단위는 상황에 따라 다름
+
+1. 단어 토큰화(Word Tokenization)
+	- 토큰의 기준을 단어로 하는 경우
+
+2. 토큰화 기준의 선택
+	- 데이터를 어떤 용도로 사용할 것인지에 따라 토큰화 기준을 선택
+	
+	- '(아포스트로피)가 들어있는 단어를 토큰으로 분류할 때
+		Don't be fooled by the dark sounding name, Mr. Jone's Orphanage ...
+	- NLTK : Do, n't / Jone, 's
+	- wordPunctTokenizer(구두점을 별도 분류) : Don, ', t / Jone, ', s
+	- text_to_word_sequence : Don't / Jone's
+
+3. 토큰화 시 고려 사항
+	1) 구두점, 특수 문자를 단순 제외하면 안된다
+		- 문장의 경계를 알 수 있는 마침표(.)
+		- AT&T 등 단어 자체에 구두점이 포함된 경우
+		- 통화 기호가 붙어 가격을 의미하게 되는 경우
+		- 숫자 사이에 콤마(,), 소수점(.)이 들어가는 경우 등
+	2) 줄임말과 띄어쓰기가 포함된 복합 명사
+		- What's(What is), we're(we are)
+		- New York, rock 'n' roll
+	3) 표준 토큰화 예제
+		- Penn Treebank Tokenization(표준 토큰화 방법 중 하나) 규칙
+		규칙 1. 하이푼으로 구성된 단어는 하나로 유지
+		규칙 2. 아포스트로피로 '접어'가 함께하는 단어는 분리
+		예제 문장. Starting a home-based restaurant may be an ideal. it doesn't have a food chain or restaurant of their own.
+		
+			트리뱅크 임포트
+		from nltk.tokenize import TreebankWordTokenizer
+			토크나이저 객체 생성
+		tokenizer=TreebankWordTokenizer()
+			예제 저장
+		text="Starting a home-based restaurant may be an ideal. it doesn't have a food chain or restaurant of their own."
+			토큰화
+		print(tokenizer.tokenize(text))
+		
+			결과
+		> ['Starting', 'a', 'home-based', 'restaurant', 'may', 'be', 'an', 'ideal.', 'it', 'does', "n't", 'have', 'a', 'food', 'chain', 'or', 'restaurant', 'of', 'their', 'own', '.']
+		
+		규칙 1. 'home-based'
+		규칙 2. 'does', "n't",
+
+4. 문장 토큰화(Sentence Tokenization)
+	- 
+
+
